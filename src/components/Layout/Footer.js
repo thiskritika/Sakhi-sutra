@@ -12,10 +12,10 @@ const Footer = () => {
             <h3>Sakhi Sutra</h3>
             <p>Handcrafted with love and purpose. Empowering women artisans one stitch at a time.</p>
             <div className="social-links">
-              <a href="#" className="social-link">📷</a>
-              <a href="#" className="social-link">📘</a>
-              <a href="#" className="social-link">💬</a>
-              <a href="#" className="social-link">📌</a>
+              <a href="/" className="social-link">📷</a>
+              <a href="/" className="social-link">📘</a>
+              <a href="/" className="social-link">💬</a>
+              <a href="/" className="social-link">📌</a>
             </div>
           </div>
           
