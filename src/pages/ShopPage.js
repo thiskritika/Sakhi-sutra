@@ -51,7 +51,7 @@ const ShopPage = () => {
 
   // WhatsApp Order Function
   const handleWhatsAppOrder = (product) => {
-    const phoneNumber = "919876543210"; // Sakhi Sutra WhatsApp number
+    const phoneNumber = "919217544105"; // Sakhi Sutra WhatsApp number
     const message = `🛍️ *New Order Request*%0a%0a` +
       `*Product:* ${product.name}%0a` +
       `*Category:* ${product.category}%0a` +
