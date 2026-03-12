@@ -1,4 +1,6 @@
-// services/whatsappService.js
+// src/services/whatsappService.js
+import React, { useState } from 'react'; // ✅ useState import kiya
+
 export const sendWhatsAppMessage = (phoneNumber, message) => {
   // Format phone number (remove any non-digit characters)
   const formattedPhone = phoneNumber.replace(/\D/g, '');
@@ -54,3 +56,5 @@ export const generateOrderTrackingMessage = (orderId, status, updates) => {
   
   return message;
 };
+
+// ✅ WhatsApp Analytics Component - YAHAN SE HATA KAR ALAG FILE MEIN RAKHO

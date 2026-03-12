@@ -68,7 +68,8 @@
   font-size: 1.5rem;
 }
 
-.cart-count {
+/* Wishlist Count */
+.wishlist-count {
   position: absolute;
   top: -8px;
   right: -8px;
@@ -81,6 +82,156 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
+  animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Sign In Header Button - NEW */
+.btn-signin-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.6rem 1.5rem;
+  border: 2px solid #8B4513;
+  border-radius: 50px;
+  background: transparent;
+  color: #8B4513;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-signin-header:hover {
+  background: #8B4513;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+}
+
+.btn-signin-header:active {
+  transform: translateY(0);
+}
+
+/* User Menu Styles - NEW */
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.user-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFF8F0;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  border: 1px solid #D4A76A;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.user-btn:hover {
+  background: #D4A76A;
+  border-color: #8B4513;
+}
+
+.user-btn:hover .user-name {
+  color: white;
+}
+
+.user-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #8B4513;
+  transition: color 0.3s ease;
+}
+
+/* User Dropdown Menu - NEW */
+.user-dropdown {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  overflow: hidden;
+  border: 1px solid rgba(139, 69, 19, 0.1);
+}
+
+.user-menu:hover .user-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.user-dropdown a,
+.user-dropdown button {
+  display: block;
+  padding: 0.8rem 1.5rem;
+  color: #333333;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.user-dropdown a:last-child,
+.user-dropdown button:last-child {
+  border-bottom: none;
+}
+
+.user-dropdown a:hover,
+.user-dropdown button:hover {
+  background: #FFF8F0;
+  color: #8B4513;
+  padding-left: 2rem;
+}
+
+.user-dropdown button {
+  color: #FF6B6B;
+  font-weight: 500;
+}
+
+.user-dropdown button:hover {
+  background: #FF6B6B;
+  color: white;
+}
+
+/* Dropdown Arrow Indicator - NEW */
+.user-btn::after {
+  content: '▼';
+  font-size: 0.7rem;
+  margin-left: 5px;
+  color: #8B4513;
+  transition: transform 0.3s ease;
+}
+
+.user-menu:hover .user-btn::after {
+  transform: rotate(180deg);
+}
+
+.user-btn:hover::after {
+  color: white;
 }
 
 .mobile-menu-btn {
@@ -140,6 +291,73 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-links a:hover {
+  color: #8B4513;
+  transform: translateX(5px);
+}
+
+/* Mobile User Greeting - NEW */
+.mobile-user-greeting {
+  padding: 1rem;
+  background: #FFF8F0;
+  color: #8B4513;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  border-left: 4px solid #8B4513;
+}
+
+/* Mobile Sign In Button - NEW */
+.mobile-signin-btn {
+  background: linear-gradient(135deg, #8B4513, #5D4037);
+  color: white !important;
+  padding: 1rem !important;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.mobile-signin-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+}
+
+/* Mobile Logout Button - NEW */
+.mobile-logout-btn {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #FF6B6B;
+  background: transparent;
+  color: #FF6B6B;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.mobile-logout-btn:hover {
+  background: #FF6B6B;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Mobile Menu Divider - NEW */
+.mobile-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #D4A76A, transparent);
+  margin: 1rem 0;
 }
 
 /* Responsive */
@@ -152,3 +370,71 @@
     display: block;
   }
 }
+
+/* Responsive for Sign In button */
+@media (max-width: 768px) {
+  .btn-signin-header {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .btn-signin-header span {
+    display: none;
+  }
+  
+  .btn-signin-header {
+    padding: 0.5rem 1rem;
+  }
+  
+  .user-name {
+    display: none;
+  }
+  
+  .user-btn {
+    padding: 0.5rem;
+  }
+  
+  .user-btn::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-signin-header {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .btn-signin-header svg,
+  .btn-signin-header span {
+    margin: 0;
+  }
+  
+  .nav-icons {
+    gap: 1rem;
+  }
+}
+
+/* Animation for dropdown items - NEW */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.user-dropdown a,
+.user-dropdown button {
+  animation: slideInFromRight 0.3s ease forwards;
+  opacity: 0;
+}
+
+.user-dropdown a:nth-child(1) { animation-delay: 0.1s; }
+.user-dropdown a:nth-child(2) { animation-delay: 0.15s; }
+.user-dropdown a:nth-child(3) { animation-delay: 0.2s; }
+.user-dropdown a:nth-child(4),
+.user-dropdown button { animation-delay: 0.25s; }
