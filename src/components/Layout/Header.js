@@ -1,6 +1,7 @@
 // src/components/Layout/Header.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Image from "../../Assets/image/WhatsApp_Image_2026-03-31_at_4.16.19_PM-removebg-preview.png";
 import './Header.css';
 
 const Header = () => {
@@ -32,9 +33,15 @@ const Header = () => {
     <header className="header">
       <div className="container">
         <nav className="nav">
+          {/* Logo with Image - Replace the path with your actual logo image */}
           <Link to="/" className="logo">
-            <span className="logo-icon">🧵</span>
-            Sakhi Sutra
+            <img 
+              src={Image}  // ← Change this path to your actual logo image
+              alt="Sakhi Sutra" 
+              className="logo-image"
+            />
+            {/* Optional: If you want to keep text as fallback or hide it */}
+            {/* <span className="logo-text">Sakhi Sutra</span> */}
           </Link>
 
           {/* Desktop Navigation */}

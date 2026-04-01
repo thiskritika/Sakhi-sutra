@@ -6,12 +6,11 @@ import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
-import CustomOrderPage from './pages/CustomOrderPage';
 import AboutPage from './pages/AboutPage';
 import WishlistPage from './pages/WishlistPage'; // ✅ Changed from CartPage to WishlistPage
 import AccountPage from './pages/AccountPage';
-import whatsappService from './services/whatsappService';
 import './App.css';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
@@ -24,11 +23,10 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/shop" element={<ShopPage />} />
-                <Route path="/custom-order" element={<CustomOrderPage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/wishlist" element={<WishlistPage />} /> {/* ✅ Changed from /cart to /wishlist */}
                 <Route path="/account" element={<AccountPage />} />
-                <Route path="/whatsappService" element={<whatsappService/>} />
+                <Route path="/profile" element={<ProfilePage />} />
               </Routes>
             </main>
             <Footer />

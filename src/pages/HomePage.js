@@ -1,10 +1,14 @@
 // src/pages/HomePage.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // ✅ Add this import
 import './HomePage.css';
+// Import background image
+import heroBg from "../Assets/image/WhatsApp_Image_2026-03-31_at_4.16.37_PM-removebg-preview.png";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth(); // ✅ Get user and auth status
   
   // Wishlist state
   const [wishlist, setWishlist] = useState([]);
@@ -56,7 +60,7 @@ const HomePage = () => {
 
   // WhatsApp Order Function
   const handleWhatsAppOrder = (product) => {
-    const phoneNumber = "919217544105"; // Sakhi Sutra WhatsApp number
+    const phoneNumber = "919217544105";
     const message = `🛍️ *New Order Request*%0a%0a` +
       `*Product:* ${product.name}%0a` +
       `*Price:* ₹${product.price}%0a` +
@@ -86,8 +90,9 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      {/* Hero Section */}
-      <section className="hero">
+      {/* Hero Section with Background Image */}
+      <section className="hero" style={{ backgroundImage: `url(${heroBg})` }}>
+        <div className="hero-overlay"></div>
         <div className="container">
           <h1>Handwoven Stories, Empowered Hands</h1>
           <p>Discover unique handmade creations by women artisans. Each piece tells a story of tradition, empowerment, and exquisite craftsmanship.</p>
@@ -101,6 +106,38 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* ✅ Profile Card Section - Add this after Hero Section */}
+      {isAuthenticated && user && (
+        <section className="profile-card-section">
+          <div className="container">
+            <div className="profile-card">
+              <div className="profile-card-avatar">
+                <div className="avatar-circle-small">
+                  {user.name?.charAt(0).toUpperCase() || 'U'}
+                </div>
+              </div>
+              <div className="profile-card-info">
+                <h3>Welcome back, {user.name?.split(' ')[0] || 'User'}! 👋</h3>
+                <p>{user.email}</p>
+                <div className="profile-card-stats">
+                  <div className="stat">
+                    <span>❤️</span>
+                    <span>{wishlist.length} Wishlist</span>
+                  </div>
+                  <div className="stat">
+                    <span>📦</span>
+                    <span>{user.orders?.length || 0} Orders</span>
+                  </div>
+                </div>
+                <button className="btn-view-profile" onClick={() => navigate('/profile')}>
+                  View Full Profile →
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Featured Products */}
       <section className="featured-section">
