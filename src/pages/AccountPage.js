@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import './AccountPage.css';
 
 const AccountPage = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  // Removed unused isLogin and setIsLogin state
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -43,63 +43,66 @@ const AccountPage = () => {
     }
   };
 
-  const validateForm = () => {
-    const newErrors = {};
+ const validateForm = () => {
+  const newErrors = {};
 
-    if (!isLogin) {
-      if (!formData.name.trim()) {
-        newErrors.name = 'Name is required';
-      } else if (formData.name.length < 3) {
-        newErrors.name = 'Name must be at least 3 characters';
-      }
-
-      if (!formData.phone.trim()) {
-        newErrors.phone = 'Phone number is required';
-      } else if (!/^\d{10}$/.test(formData.phone)) {
-        newErrors.phone = 'Enter valid 10-digit phone number';
-      }
+  if (activeAccordion === 'signup') {
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    } else if (formData.name.length < 3) {
+      newErrors.name = 'Name must be at least 3 characters';
     }
 
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Enter a valid email address';
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = 'Enter valid 10-digit phone number';
     }
+  }
 
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
-    }
+  if (!formData.email.trim()) {
+    newErrors.email = 'Email is required';
+  } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    newErrors.email = 'Enter a valid email address';
+  }
 
-    if (!isLogin && formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
-    }
+  if (!formData.password) {
+    newErrors.password = 'Password is required';
+  } else if (formData.password.length < 6) {
+    newErrors.password = 'Password must be at least 6 characters';
+  }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  if (activeAccordion === 'signup' && formData.password !== formData.confirmPassword) {
+    newErrors.confirmPassword = 'Passwords do not match';
+  }
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) return;
+  e.preventDefault();
+  if (!validateForm()) return;
 
-    let result;
-    if (isLogin) {
-      result = await login(formData.email, formData.password);
-      if (result.success) {
-        setSuccessMessage('Login successful! Redirecting...');
-        setTimeout(() => navigate('/profile'), 1500);
-      }
-    } else {
-      result = await signup(formData);
-      if (result.success) {
-        setSuccessMessage(`Account created successfully! Welcome ${formData.name}! Redirecting...`);
-        setTimeout(() => navigate('/profile'), 1500);
-      }
+  let result;
+
+  if (activeAccordion === 'login') {
+    result = await login(formData.email, formData.password);
+
+    if (result?.success) {
+      setSuccessMessage('Login successful! Redirecting...');
+      setTimeout(() => navigate('/profile'), 1500);
     }
-  };
+  } 
+  else if (activeAccordion === 'signup') {
+    result = await signup(formData);
 
+    if (result?.success) {
+      setSuccessMessage(`Account created successfully! Welcome ${formData.name}! Redirecting...`);
+      setTimeout(() => navigate('/profile'), 1500);
+    }
+  }
+};
   // Handle Google Sign In
   const handleGoogleSignIn = () => {
     alert('Google Sign In coming soon!');
